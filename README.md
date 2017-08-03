@@ -28,8 +28,8 @@ directly accessible. The port 1025 is untouched.
 mailcatcher:
   image: hausgold/mailcatcher
   environment:
-    # Mind the missing .local suffix
-    - MDNS_HOSTNAME=mailcatcher.test
+    # Mind the .local suffix
+    - MDNS_HOSTNAME=mailcatcher.test.local
   ports:
     # The ports are just for you to know when configure your
     # container links, on depended containers
@@ -52,10 +52,22 @@ The magic environment variable is *MDNS_HOSTNAME*. Just pass it like that to
 your docker run command:
 
 ```bash
-$ docker run --rm -e MDNS_HOSTNAME=something.else hausgold/mailcatcher
+$ docker run --rm -e MDNS_HOSTNAME=something.else.local hausgold/mailcatcher
 ```
 
 This will result in *something.else.local*.
+
+## Other top level domains
+
+By default *.local* is the default mDNS top level domain. This images does not
+force you to use it. But if you do not use the default *.local* top level
+domain, you need to [configure your host avahi
+configuration](https://wiki.archlinux.org/index.php/avahi#Configuring_mDNS_for_custom_TLD)
+to accept it.
+
+## How it looks
+
+![Screenshot of a browser session](docs/assets/how_it_looks.png)
 
 ## Further reading
 

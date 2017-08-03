@@ -1,8 +1,8 @@
 FROM schickling/mailcatcher:latest
-MAINTAINER Johannes Schickling "hermann.mayer@hausgold.de"
+MAINTAINER Hermann Mayer "hermann.mayer@hausgold.de"
 
 # You can change this environment variable on run's with -e
-ENV MDNS_HOSTNAME=mailcatcher
+ENV MDNS_HOSTNAME=mailcatcher.local
 
 # Install system packages
 RUN apt-get update -yqqq && \
