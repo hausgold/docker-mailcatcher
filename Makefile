@@ -6,13 +6,13 @@ SHELL := bash
 .SUFFIXES:
 .PHONY:
 
-TIME := time
-DOCKER := docker
+TIME ?= time
+DOCKER ?= docker
 
-CONTAINER_REGISTRY :=
-CONTAINER_NAME := hausgold/mailcatcher
-CONTAINER_URI := $(CONTAINER_REGISTRY)$(CONTAINER_NAME)
-CONTAINER_URI_DEV := $(CONTAINER_URI):dev
+CONTAINER_REGISTRY ?=
+CONTAINER_NAME ?= hausgold/mailcatcher
+CONTAINER_URI ?= $(CONTAINER_REGISTRY)$(CONTAINER_NAME)
+CONTAINER_URI_DEV ?= $(CONTAINER_URI):dev
 
 all:
 	# mDNS enabled schickling/mailcatcher
