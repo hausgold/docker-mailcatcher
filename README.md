@@ -1,8 +1,20 @@
 ![mDNS enabled schickling/mailcatcher](https://raw.githubusercontent.com/hausgold/docker-mailcatcher/master/docs/assets/project.png)
 
+[![Source Code](https://img.shields.io/badge/source-on%20github-blue.svg)](https://github.com/hausgold/docker-mailcatcher)
+[![Docker Image](https://img.shields.io/badge/image-on%20docker%20hub-blue.svg)](https://hub.docker.com/r/hausgold/mailcatcher/)
+
 This Docker images provides the [schickling/mailcatcher](https://hub.docker.com/r/schickling/mailcatcher/) image as base
 with the mDNS/ZeroConf stack on top. So you can enjoy the great
 [mailcatcher](https://mailcatcher.me/) app, which is accessible by default as *mailcatcher.local*.
+
+- [Requirements](#requirements)
+- [Getting starting](#getting-starting)
+- [docker-compose usage example](#docker-compose-usage-example)
+- [Host configs](#host-configs)
+- [Configure a different mDNS hostname](#configure-a-different-mdns-hostname)
+- [Other top level domains](#other-top-level-domains)
+- [How it looks](#how-it-looks)
+- [Further reading](#further-reading)
 
 ## Requirements
 
