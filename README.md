@@ -76,7 +76,7 @@ hostname.
 $ docker run --rm \
   -e MDNS_HOSTNAME=something.else.local \
   -e MDNS_CNAMES=nothing.else.local,special.local \
-  hausgold/ruby
+  hausgold/mailcatcher
 ```
 
 This will result in *something.else.local*, *nothing.else.local* and

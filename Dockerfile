@@ -5,9 +5,13 @@ MAINTAINER Hermann Mayer "hermann.mayer@hausgold.de"
 ENV MDNS_HOSTNAME=mailcatcher.local
 
 # Install system packages
-RUN apt-get update -yqqq && \
-  apt-get install -y \
-    avahi-daemon avahi-discover avahi-utils libnss-mdns haproxy supervisor
+RUN apk add --no-cache \
+  dbus avahi avahi-tools haproxy supervisor bash
+
+# Reconfigure supervisord
+RUN sed \
+  -e 's#^\(files =\).*#\1 /etc/supervisor/conf.d/*.conf#g' \
+  -i /etc/supervisord.conf
 
 # Copy avahi.sh
 COPY config/avahi.sh /usr/local/bin/
@@ -15,9 +19,10 @@ RUN chmod +x /usr/local/bin/avahi.sh
 
 # Configure haproxy
 COPY config/haproxy.conf /etc/haproxy/haproxy.cfg
+COPY config/haproxy/errors /etc/haproxy/errors
 
 # Configure supervisord
 COPY config/supervisor/* /etc/supervisor/conf.d/
 
 # Define the command to run per default
-CMD /usr/bin/supervisord -nc /etc/supervisor/supervisord.conf
+CMD /usr/bin/supervisord -nc /etc/supervisord.conf
