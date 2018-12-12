@@ -1,4 +1,4 @@
-![mDNS enabled schickling/mailcatcher](https://raw.githubusercontent.com/hausgold/docker-mailcatcher/master/docs/assets/project.svg)
+![mDNS enabled schickling/mailcatcher](https://raw.githubusercontent.com/hausgold/docker-mailcatcher/master/docs/assets/project.png)
 
 [![Source Code](https://img.shields.io/badge/source-on%20github-blue.svg)](https://github.com/hausgold/docker-mailcatcher)
 [![Docker Image](https://img.shields.io/badge/image-on%20docker%20hub-blue.svg)](https://hub.docker.com/r/hausgold/mailcatcher/)
