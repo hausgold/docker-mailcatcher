@@ -1,4 +1,4 @@
-MAKEFLAGS += --warn-undefined-variables
+MAKEFLAGS += --warn-undefined-variables -j1
 SHELL := bash
 .SHELLFLAGS := -eu -o pipefail -c
 .DEFAULT_GOAL := all
@@ -6,30 +6,21 @@ SHELL := bash
 .SUFFIXES:
 .PHONY:
 
-TIME ?= time
-DOCKER ?= docker
+# Files
+TAGS ?= $(filter-out README.md,$(subst /,,$(wildcard *.*/)))
+UPDATE_TAGS := $(TAGS:%=update-%)
 
-CONTAINER_REGISTRY ?=
-CONTAINER_NAME ?= hausgold/mailcatcher
-CONTAINER_URI ?= $(CONTAINER_REGISTRY)$(CONTAINER_NAME)
-CONTAINER_URI_DEV ?= $(CONTAINER_URI):dev
+# Host binaries
+CP ?= cp
 
 all:
-	# mDNS enabled schickling/mailcatcher
+	# Configuration Maintenance
 	#
-	# build          Build a development snapshot of the image
-	#
-	# shell          You can start an individual session of the image for tests
-	# clean          Clean the current development snapshot
+	# update          Update the configuration on all image tag directories
 
-build: clean
-	# Build the Docker image
-	@$(TIME) $(DOCKER) build --no-cache -t "$(CONTAINER_URI_DEV)" .
+update: $(UPDATE_TAGS)
 
-shell:
-	# Start an individual test session of the image
-	@$(DOCKER) run --rm -it "$(CONTAINER_URI_DEV)" bash
-
-clean:
-	# Clean the current development snapshot
-	@$(DOCKER) rmi --force "$(CONTAINER_URI_DEV)" || true
+$(UPDATE_TAGS): TAG=$(@:update-%=%)
+$(UPDATE_TAGS):
+	# Update the configuration for the "$(TAG)" image tag directory
+	@$(CP) -ar config/* $(TAG)/config/
