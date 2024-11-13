@@ -36,16 +36,12 @@ directly accessible. The port 1025 is untouched.
 ## docker-compose usage example
 
 ```yaml
-mailcatcher:
-  image: hausgold/mailcatcher
-  environment:
-    # Mind the .local suffix
-    - MDNS_HOSTNAME=mailcatcher.test.local
-  ports:
-    # The ports are just for you to know when configure your
-    # container links, on depended containers
-    - "1025"
-    - "1080"
+services:
+  mailcatcher:
+    image: hausgold/mailcatcher
+    environment:
+      # Mind the .local suffix
+      MDNS_HOSTNAME: mailcatcher.test.local
 ```
 
 ## Host configs
